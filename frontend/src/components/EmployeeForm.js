@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 const EmployeeForm = () => {
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -11,7 +12,7 @@ const EmployeeForm = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:5000/api/employee/${id}`)
+      fetch(`https://employesystem-6.onrender.com/api/employee/${id}`)
         .then((res) => res.json())
         .then((data) => setFormData(data));
     }
@@ -22,7 +23,7 @@ const EmployeeForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    await fetch(`http://localhost:5000/api/employee/${id || ""}`, {
+    await fetch(`https://employesystem-6.onrender.com/api/employee/${id || ""}`, {
       method:id ? "put" : "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(formData),

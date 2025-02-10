@@ -12,7 +12,7 @@ const EmployeeForm = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (id) {
-      fetch(`https://employesystem-6.onrender.com/api/employee/${id}`)
+      fetch(`${process.env.backend_url}/api/employee/${id}`)
         .then((res) => res.json())
         .then((data) => setFormData(data));
     }
@@ -23,7 +23,7 @@ const EmployeeForm = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    await fetch(`https://employesystem-6.onrender.com/api/employee/${id || ""}`, {
+    await fetch(`${process.env.backend_url}/api/employee/${id || ""}`, {
       method:id ? "put" : "post",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(formData),

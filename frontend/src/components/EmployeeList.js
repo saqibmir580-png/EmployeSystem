@@ -5,12 +5,12 @@ const EmployeeList = () => {
   const [employee, setEmployee] = useState([]);
 
   useEffect(() => {
-    fetch("https://employesystem-6.onrender.com/api/employee")
+    fetch("${process.env.backend_url}/api/employee")
       .then((res) => res.json())
       .then((data) => setEmployee(data));
   }, []);
   const deleteEmployee = (id) => {
-    fetch(`https://employesystem-6.onrender.com/api/employee/${id}`, {
+    fetch(`${process.env.backend_url}/api/employee/${id}`, {
       method: "DELETE",
     }).then(() => setEmployee(employee.filter((emp) => emp._id !== id)));
   };
